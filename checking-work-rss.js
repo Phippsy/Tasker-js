@@ -31,17 +31,22 @@ var landyArray = httpGet("https://www.google.co.uk/alerts/feeds/0322414412625294
 	.replace("&#39","'")
 	.split('<title type="html">');
 
-var ok = say( "Here are the latest Land Rover headlines:", "com.google.android.tts", "eng-gbr", "media", 5, 7);
+// Speaking the results
+var talktext = "";
 
 for ( var i=1; i<6; i++) {
-	var ok = say( getTitle(landyArray[i]) + ".", "com.google.android.tts", "eng-gbr", "media", 5, 7);
-	wait(500);
+	talktext += getTitle(landyArray[i]);
+	talktext += " . . . . .";
+}
+
+var ok = say( "Here are the latest Land Rover headlines:", "com.google.android.tts", "eng-gbr", "media", 5, 7);
+var ok = say( talktext, "com.google.android.tts", "eng-gbr", "media", 5, 7);
+
+
+for ( var i=1; i<6; i++) {
+	talktext += getTitle(jaguarArray[i]);
+	talktext += " . . . . .";
 }
 
 var ok = say( "Here are the latest Jaguar headlines:", "com.google.android.tts", "eng-gbr", "media", 5, 7);
-
-for ( var i=1; i<6; i++) {
-	var ok = say( getTitle(jaguarArray[i]) + ".", "com.google.android.tts", "eng-gbr", "media", 5, 7);
-	wait(500);
-}
-
+var ok = say( talktext, "com.google.android.tts", "eng-gbr", "media", 5, 7);
